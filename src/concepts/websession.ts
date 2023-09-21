@@ -29,9 +29,7 @@ export default class WebSessionConcept {
     // synchronization like starting a session should just consist of a series of actions that may throw
     // exceptions and should not have its own control flow.
     
-    if (session.user !== undefined) {
-      throw new UnauthenticatedError("Not logged out!");
-    }
+    this.isInActive;
     session.user = username;
   }
 
@@ -50,6 +48,13 @@ export default class WebSessionConcept {
   isActive(session: WebSessionDoc) {
     if (session.user === undefined) {
       throw new UnauthenticatedError("Not logged in!");
+    }
+  }
+
+  // Helper functions
+  isInActive(session: WebSessionDoc) {
+    if (session.user !== undefined) {
+      throw new UnauthenticatedError("Not logged out!");
     }
   }
 }
